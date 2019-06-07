@@ -18,10 +18,10 @@ OOOOOH ok so use "python3" instead of "python" from here on
 git add .
     #dot means current folder
 
-git commit -m
-"message for git"
+git commit -m "message for git"
 
 git push
     login
 
-    
+Heres my trinket
+https://trinket.io/python/4fe0eac583
