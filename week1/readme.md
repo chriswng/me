@@ -14,3 +14,14 @@ type "cd course"
 lots of errors so far, mostly due to mac. it's quite tragic :( python why :(
 
 OOOOOH ok so use "python3" instead of "python" from here on
+
+git add .
+    #dot means current folder
+
+git commit -m
+"message for git"
+
+git push
+    login
+
+    
