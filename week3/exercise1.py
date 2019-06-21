@@ -12,7 +12,14 @@ def loop_ranger(start, stop=None, step=1):
     The look up the docs for range(), you can answer this with just the range 
     function, but we'd like you to do it the long way, probably using a loop.
     """
-    return None
+    
+    numlist = [start]
+    while start < (stop-step) :
+        start = start+step
+        numlist.append(start) 
+    return numlist
+    
+    
 
 
 def lone_ranger(start, stop, step):
@@ -20,7 +27,12 @@ def lone_ranger(start, stop, step):
 
     Look up the docs for range() and wrap it in a 1:1 way
     """
-    return None
+
+    numlist = [start]
+    while start < stop-step :
+        start = start+step
+        numlist.append(start) 
+    return numlist
 
 
 def two_step_ranger(start, stop):
@@ -29,7 +41,11 @@ def two_step_ranger(start, stop):
     Sometimes you want to hide complexity.
     Make a range function that always has a step size of 2
     """
-    return None
+    numlist = [start]
+    while start < stop-2:
+        start = start+2
+        numlist.append(start) 
+    return numlist
 
 
 def stubborn_asker(low, high):
@@ -40,7 +56,18 @@ def stubborn_asker(low, high):
 
     Look up the docs for input
     """
-    return None
+    guessed = False
+
+    while not guessed:
+        guess = int(input("Make a guess: "))
+        if low <= guess <= high:
+            print("yeet!")
+            return guess
+        elif guess < low:
+            print("Too low :(")
+        elif guess > high:
+            print("Too big mate")
+    
 
 
 def not_number_rejector(message):
@@ -50,7 +77,15 @@ def not_number_rejector(message):
     (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
     When you do get a number, return it.
     """
-    return None
+    given = False
+
+    while not given:
+        NUMBER = input("Give me number pls: ")
+        if NUMBER.isdigit():
+            print("yeet!")
+            return NUMBER
+        else: 
+            print("not on mate")
 
 
 def super_asker(low, high):
@@ -61,7 +96,14 @@ def super_asker(low, high):
     Try to call at least one of the other functions to minimise the
     amount of code.
     """
-    return None
+    
+    given = False
+    while not given:
+        guess = stubborn_asker(low,high)
+        if guess.isdigit():
+        else: 
+            print("Not on mate")
+    #something = stubborn askeer
 
 
 if __name__ == "__main__":

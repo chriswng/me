@@ -16,7 +16,7 @@ def exampleGuessingGame():
     print("A number between 0 and _ ?")
     upperBound = input("Enter an upper bound: ")
     print("OK then, a number between 0 and {} ?".format(upperBound))
-    upperBound = int(upperBound)
+    upperBoundcour = int(upperBound)
 
     actualNumber = random.randint(0, upperBound)
 
