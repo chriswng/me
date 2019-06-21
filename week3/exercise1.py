@@ -80,10 +80,10 @@ def not_number_rejector(message):
     given = False
 
     while not given:
-        NUMBER = input("Give me number pls: ")
+        NUMBER = str(input(message))
         if NUMBER.isdigit():
-            print("yeet!")
-            return NUMBER
+            print("yeet its a number!")
+            return int(NUMBER)
         else: 
             print("not on mate")
 
@@ -97,13 +97,41 @@ def super_asker(low, high):
     amount of code.
     """
     
-    given = False
+    while True:
+        answer = not_number_rejector("Give me a number between " + str(low) + " and " + str(high))
+        if low <= answer <= high:
+            return answer
+        else:
+            print("But it wasnt in the range :(")
+    
+
+    """given = False
+    while not given:
+        NUMBER = input("Give me number pls: ")
+        if NUMBER.isdigit():
+            guessed = False
+            while not guessed:
+                guess = int(NUMBER)
+                if low <= guess <= high:
+                    print("yeet!")
+                    return guess
+                elif guess < low:
+                    print("Too low :(")
+
+                elif guess > high:
+                    print("Too big mate")
+
+            return NUMBER
+        else: 
+            print("not on mate")"""
+
+    """given = False
     while not given:
         guess = stubborn_asker(low,high)
         if guess.isdigit():
         else: 
-            print("Not on mate")
-    #something = stubborn askeer
+            print("Not on mate")"""
+    #something = stubborn askeer"
 
 
 if __name__ == "__main__":

@@ -213,14 +213,24 @@ def loops_6():
     TIP: look out for the starting condition.
     """
     
-    numwedge = []
+    """numwedge = []
     num = []
     for i in range(10):
         num.append(str(i))
         numwedge.append((num)*1)
-    return(numwedge)
+    return(numwedge)"""
 
+    wedge = []
+    for maxNum in range(1, 11):
+        tempList = []
+        for num in range(maxNum):
+            tempList.append(str(num))
 
+        wedge.append(tempList)
+
+    
+
+    return wedge
     
 
 
