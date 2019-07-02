@@ -5,6 +5,22 @@
 import math
 # import time
 
+def not_number_rejector(message):
+    """Ask for a number repeatedly until actually given one.
+
+    Ask for a number, and if the response is actually NOT a number 
+    (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
+    When you do get a number, return it.
+    """
+    given = False
+
+    while not given:
+        NUMBER = str(input(message))
+        if NUMBER.isdigit():
+            return int(NUMBER)
+            given = True
+        else: 
+            print("Numbers only here! (no special characters)")
 
 def binary_search(low, high, actual_number):
     """Do a binary search.
@@ -23,9 +39,47 @@ def binary_search(low, high, actual_number):
     Use the VS Code debugging tools a lot here. It'll make understanding 
     things much easier.
     """
+    low = 0
+    high = 0
+  
+    low = not_number_rejector("Enter a lower bound: ")
+
+    #upperBound = input("Enter an upper bound: ")
+    upperguess = False
+    while not upperguess:
+      high = not_number_rejector("Enter an upper bound: ")
+      if high > low:
+         upperguess = True
+      else:
+        print("HEY YOU SET THE BOUNDS SO STAY WITH IT")
+
+    #sorted_list = list(range(low,high))
+    
     tries = 0
     guess = 0
+    guessed = False
+  # fill in the condition for the while loop
+    while not guessed:
+        # calculate the middle index using the two pointers
+        mid = (low + high)//2
+        if mid == actual_number:
+            print("The number {} has been found!".format(mid))
+            guess = actual_number
+            guessed = True
+        elif actual_number < guess:
+        # set the right_pointer to the appropriate value
+            print("Guess number {}: {}".format(tries,mid))
+            high = guess
+        else:
+        # set the left_pointer to the appropriate value
+            print("Guess number {}: {}".format(tries,mid))
+            high = guess + 1
+    
     return {"guess": guess, "tries": tries}
+
+  #MAKE A NEW VARIABLE THAT U BUILD ON
+    
+
 
 
 if __name__ == "__main__":

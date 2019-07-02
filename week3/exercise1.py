@@ -80,7 +80,7 @@ def not_number_rejector(message):
     given = False
 
     while not given:
-        NUMBER = str(input(message))
+        NUMBER = str(input("Give me any number!"))
         if NUMBER.isdigit():
             print("yeet its a number!")
             return int(NUMBER)
@@ -98,13 +98,13 @@ def super_asker(low, high):
     """
     
     while True:
-        answer = not_number_rejector("Give me a number between " + str(low) + " and " + str(high))
+        answer = not_number_rejector("Give me a number!")
         if low <= answer <= high:
             return answer
         else:
             print("But it wasnt in the range :(")
     
-
+ # these are my old 
     """given = False
     while not given:
         NUMBER = input("Give me number pls: ")

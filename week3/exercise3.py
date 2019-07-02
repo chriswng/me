@@ -5,6 +5,22 @@ Steps on the way to making your own guessing game.
 
 import random
 
+def not_number_rejector(message):
+    """Ask for a number repeatedly until actually given one.
+
+    Ask for a number, and if the response is actually NOT a number 
+    (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
+    When you do get a number, return it.
+    """
+    given = False
+
+    while not given:
+        NUMBER = str(input(message))
+        if NUMBER.isdigit():
+            return int(NUMBER)
+            given = True
+        else: 
+            print("Numbers only here! (no special characters)")
 
 def advancedGuessingGame():
     """Play a guessing game with a user.
@@ -25,6 +41,46 @@ def advancedGuessingGame():
     Remember to think modular. Try to keep your functions small and single
     purpose if you can!
     """
+
+    print("\nWelcome to the guessing game!")
+    print("A number between _ and _ ?")
+
+    #lowerBound = input("Enter an lower bound: ")
+    lowerBound = not_number_rejector("Enter a lower bound: ")
+
+    #upperBound = input("Enter an upper bound: ")
+    upperguess = False
+    while not upperguess:
+      upperBound = not_number_rejector("Enter an upper bound: ")
+      if upperBound > lowerBound:
+         upperguess = True
+      else:
+        print("HEY YOU SET THE BOUNDS SO STAY WITH IT")
+
+
+    print("OK then, a number between {} and {} ?".format(lowerBound, upperBound))
+    lowerBoundcour = int(lowerBound)
+    upperBoundcour = int(upperBound)
+
+    actualNumber = random.randint(lowerBoundcour, upperBoundcour)
+
+    guessed = False
+
+    while not guessed:
+      guessedNumber = not_number_rejector("Make a guess: ")
+      print("You guessed {},".format(guessedNumber),)
+      if guessedNumber == actualNumber:
+        print("You got it!! It was {}".format(actualNumber))
+        guessed = True
+      elif guessedNumber < lowerBoundcour:
+        print("HEY YOU SET THE BOUNDS SO STAY WITH IT")
+      elif guessedNumber > upperBoundcour:
+        print("HEY YOU SET THE BOUNDS SO STAY WITH IT")
+      elif guessedNumber < actualNumber:
+        print("Too small, try again :'(")
+      else:
+        print("Too big, try again :'(")
+ 
 
     return "You got it!"
     # the tests are looking for the exact string "You got it!". Don't modify that!
