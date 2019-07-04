@@ -17,8 +17,8 @@ def not_number_rejector(message):
     while not given:
         NUMBER = str(input(message))
         if NUMBER.isdigit():
-            return int(NUMBER)
             given = True
+            return int(NUMBER)
         else: 
             print("Numbers only here! (no special characters)")
 
@@ -68,13 +68,14 @@ def binary_search(low, high, actual_number):
             guessed = True
         elif actual_number < guess:
         # set the right_pointer to the appropriate value
+            tries = int(tries) + 1
             print("Guess number {}: {}".format(tries,mid))
             high = guess
         else:
         # set the left_pointer to the appropriate value
+            tries = int(tries) + 1
             print("Guess number {}: {}".format(tries,mid))
             high = guess + 1
-    
     return {"guess": guess, "tries": tries}
 
   #MAKE A NEW VARIABLE THAT U BUILD ON
