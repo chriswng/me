@@ -5,22 +5,7 @@
 import math
 # import time
 
-def not_number_rejector(message):
-    """Ask for a number repeatedly until actually given one.
 
-    Ask for a number, and if the response is actually NOT a number 
-    (e.g. "cow", "six", "8!") then throw it out and ask for an actual number.
-    When you do get a number, return it.
-    """
-    given = False
-
-    while not given:
-        NUMBER = str(input(message))
-        if NUMBER.isdigit():
-            given = True
-            return int(NUMBER)
-        else: 
-            print("Numbers only here! (no special characters)")
 
 def binary_search(low, high, actual_number):
     """Do a binary search.
@@ -39,7 +24,7 @@ def binary_search(low, high, actual_number):
     Use the VS Code debugging tools a lot here. It'll make understanding 
     things much easier.
     """
-    low = 0
+    """low = 0
     high = 0
   
     low = not_number_rejector("Enter a lower bound: ")
@@ -54,29 +39,26 @@ def binary_search(low, high, actual_number):
         print("HEY YOU SET THE BOUNDS SO STAY WITH IT")
 
     #sorted_list = list(range(low,high))
-    
+    """
     tries = 0
-    guess = 0
-    guessed = False
   # fill in the condition for the while loop
-    while not guessed:
+    while True:
         # calculate the middle index using the two pointers
         mid = (low + high)//2
         if mid == actual_number:
             print("The number {} has been found!".format(mid))
-            guess = actual_number
-            guessed = True
-        elif actual_number < guess:
+            break
+        elif actual_number < mid:
         # set the right_pointer to the appropriate value
-            tries = int(tries) + 1
+            tries += 1
             print("Guess number {}: {}".format(tries,mid))
-            high = guess
+            high = mid
         else:
         # set the left_pointer to the appropriate value
-            tries = int(tries) + 1
+            tries += 1
             print("Guess number {}: {}".format(tries,mid))
-            high = guess + 1
-    return {"guess": guess, "tries": tries}
+            low = mid
+    return {"guess": mid, "tries": tries}
 
   #MAKE A NEW VARIABLE THAT U BUILD ON
     

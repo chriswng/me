@@ -11,4 +11,14 @@ TODO: Reflect on what you learned this week and what is still unclear.
 Hey you got it actually!!
 turns out you jsut edit the existing code as it opens the data and "data = json.loads(json_data) is the dictionary?
 
-why are they using index value 0?
+#why are they using index value 0?
+heres why
+
+Open bracket makes the entire json file a dictionay
+    The values of results is a list [SQUARE BRACKETS]
+        Inside it is a dictionary, thus the first element in that list is the dictionary you're trying to get into.
+
+    while the content in info is pure dictionary
+
+
+stutus_code 200 is OK status

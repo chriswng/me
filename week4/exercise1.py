@@ -36,7 +36,10 @@ def get_some_details():
     json_data = open(LOCAL + "/lazyduck.json").read()
 
     data = json.loads(json_data)
-    return {"lastName": data["results"][0]["name"]["last"], "password": data["results"][0]["login"]["password"], "postcodePlusID": int(data["results"][0]["location"]["postcode"]) +int(data["results"][0]["id"]["value"])}
+    lastname = data["results"][0]["name"]["last"]
+    password = data["results"][0]["login"]["password"]
+    postcodePlusID = int(data["results"][0]["location"]["postcode"]) +int(data["results"][0]["id"]["value"])
+    return { "lastName": lastname, "password": password, "postcodePlusID": postcodePlusID}
 
 
 def wordy_pyramid():
@@ -74,6 +77,10 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
+    url = ""
+
+    pull = requests.get(url)
+
     pass
 
 
@@ -93,12 +100,21 @@ def pokedex(low=1, high=5):
     """
     template = "https://pokeapi.co/api/v2/pokemon/{id}"
 
-    url = template.format(base=base, id=5)
-    r = requests.get(url)
-    if r.status_code is 200:
-        the_json = json.loads(r.text)
-    return {"name": None, "weight": None, "height": None}
+    tall = 0
+    for i in range(low,high):
+        url = template.format(base=template, id=i)
+        r = requests.get(url)
+        if r.status_code is 200:
+            the_json = json.loads(r.text)
+            tallnew = the_json["height"]
+            if tallnew > tall:
+                tall = tallnew
+                name = the_json["name"]  
+                weight = the_json["weight"]
+                height = the_json["height"] 
+    return {"name": name, "weight": weight, "height": height}
 
+ 
 
 def diarist():
     """Read gcode and find facts about it.
@@ -114,6 +130,11 @@ def diarist():
          the test will have nothing to look at.
     TIP: this might come in handy if you need to hack a 3d print file in the future.
     """
+
+    
+    gcode_data = open(LOCAL + "/Trispokedovetiles(laser).gcode").read()
+
+    data = gcode.loads(gcode_data)
     pass
 
 
