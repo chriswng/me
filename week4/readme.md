@@ -21,4 +21,9 @@ Open bracket makes the entire json file a dictionay
     while the content in info is pure dictionary
 
 
-stutus_code 200 is OK status
+status_code 200 is OK status
+
+#.read vs .readline vs .readlines
+    block vs single line vs all the line
+
+Go down into week 4 before testing to really hone in
