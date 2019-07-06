@@ -49,11 +49,11 @@ def binary_search(low, high, actual_number):
       if actual_number < mid:
         # set the right_pointer to the appropriate value
         print("Guess number {}: {}".format(tries,mid))
-        high = mid 
+        high = mid -1
       elif actual_number > mid:
       # set the left_pointer to the appropriate value
         print("Guess number {}: {}".format(tries,mid))
-        low = mid 
+        low = mid +1
       else:
         break
     return {"guess": mid, "tries": tries}
