@@ -42,22 +42,20 @@ def binary_search(low, high, actual_number):
     """
     tries = 0
   # fill in the condition for the while loop
-    while True:
+    while high > low:
         # calculate the middle index using the two pointers
-        mid = (low + high)//2
-        if mid == actual_number:
-            print("The number {} has been found!".format(mid))
-            break
-        elif actual_number < mid:
+      mid = (low + high)//2
+      tries += 1
+      if actual_number < mid:
         # set the right_pointer to the appropriate value
-            tries += 1
-            print("Guess number {}: {}".format(tries,mid))
-            high = mid
-        else:
-        # set the left_pointer to the appropriate value
-            tries += 1
-            print("Guess number {}: {}".format(tries,mid))
-            low = mid
+        print("Guess number {}: {}".format(tries,mid))
+        high = mid 
+      elif actual_number > mid:
+      # set the left_pointer to the appropriate value
+        print("Guess number {}: {}".format(tries,mid))
+        low = mid 
+      else:
+        break
     return {"guess": mid, "tries": tries}
 
   #MAKE A NEW VARIABLE THAT U BUILD ON
