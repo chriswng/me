@@ -50,15 +50,10 @@ def do_bunch_of_bad_things():
 # It should say something different in the last message.
 def countdown(message, start, stop, completion_message):
     countlist = []
-    if stop >start:
-        for i in range(stop, start-1, -1):
-            print(message,str(i))
-        countlist.append(completion_message) #move this outside loop to pass og test
-    else:
-        for i in range(stop, start, 1):
-            print(message,str(i))
-        countlist.append(completion_message)
-    #pass
+    #if stop==1:
+    for i in range(start-stop+1, stop-stop, -1):
+        print(message,str(i))
+    print(completion_message)
     return countlist
 
 # TRIANGLES
@@ -92,7 +87,7 @@ def calculate_aspect(base, height):
     aspect = ""
     if height > base:
         aspect = "tall"
-    elif base < height:
+    elif base > height:
         aspect = "wide"
     else:
         aspect = "equal"
@@ -176,13 +171,11 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
     f=get_triangle_facts(base, height)
     d=tell_me_about_this_right_triangle(f)
     if return_diagram and return_dictionary:
-        return (d,f)
+        return {"diagram": d, "facts":f}
     elif return_diagram:
         return d
     elif return_dictionary:
-        return {
-            "facts":f
-        }
+        return f
     else:
         print("You're an odd one, you don't want anything!")
 
