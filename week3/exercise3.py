@@ -17,8 +17,8 @@ def not_number_rejector(message):
     while not given:
         NUMBER = str(input(message))
         if NUMBER.isdigit():
-            return int(NUMBER)
             given = True
+            return int(NUMBER)
         else: 
             print("Numbers only here! (no special characters)")
 

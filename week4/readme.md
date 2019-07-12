@@ -27,3 +27,8 @@ status_code 200 is OK status
     block vs single line vs all the line
 
 Go down into week 4 before testing to really hone in
+
+docstring is the first """ line in a function such that it defines the function
+
+"parse" = understanding sentences
+"refactoring" = any time to mak e code maintain and read better

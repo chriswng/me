@@ -77,11 +77,28 @@ def wordy_pyramid():
     ]
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
-    url = ""
 
-    pull = requests.get(url)
+    keyo=" 5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
+    url = " http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={min}}&maxLength={max}&limit={limit}"
+    mino = 3
+    maxo = 20
+    limito = 2
+    lengtho = min
+    wordlist = []
+    while length <= max:
+        fullurl=url.format(key=keyo, min=mino, max=maxo, limit=limito)
+        pull = requests.get(fullurl)
+        for i in range(min,max, limit):
+            if r.status_code is 200:
+                if i < max:
+                    wordlist.append(pull)
+            else:
+                for o in range(max,min, -limit):
+                    wordlist.append(pull)
+    return(wordlist)
 
-    pass
+        
+        
 
 
 def pokedex(low=1, high=5):

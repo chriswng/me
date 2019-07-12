@@ -36,6 +36,16 @@ def be_cool_for_ever(name, file_path):
 be_cool_for_ever("Ben", "../ben_is_cool.txt")
 be_cool_for_ever("Ben", "ben_is_cool.lol_UR_joking")
 
+def not_cool(name, file_path):
+    """Save a message about drugs not being cool."""
+    mode = "w"  # from the docs
+    history_book = open(file_path, mode)
+    history_book.write(name + " are not cool")
+    history_book.close()
+
+# ..
+not_cool("drugs", "drugs_are_not_cool.txt")
+
 # See where each file was saved
 
 def who_is_cool(file_path):
