@@ -164,7 +164,7 @@ def wordy_pyramid(api_key):
     )
     pyramid_list = []
     for i in range(3, 21, 2):
-        url = baseURL.format(api_key="", length=i)
+        url = baseURL.format(api_key="5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868", length=i)
         r = requests.get(url)
         if r.status_code is 200:
             message = r.json()[0]["word"]
@@ -183,8 +183,23 @@ def wordy_pyramid(api_key):
 
 
 def get_a_word_of_length_n(length):
-    pass
+    # import requests
 
+    # baseURL = (
+    #     "http://api.wordnik.com/v4/words.json/randomWords?"
+    #     "api_key={api_key}"
+    #     "&minLength={length}"
+    #     "&maxLength={length}"
+    #     "&limit=1"
+    # )
+    # url = baseURL.format(api_key="5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868", length=length)
+    # r = requests.get(url)
+    # nlist =[]
+    # if r.status_code is 200:
+    #     message = r.json()[0]["word"]
+    #     nlist.append(message)
+    # return(nlist)
+    pass
 
 def list_of_words_with_lengths(list_of_lengths):
     pass

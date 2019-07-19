@@ -78,23 +78,48 @@ def wordy_pyramid():
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
 
-    keyo=" 5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
-    url = " http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={min}}&maxLength={max}&limit={limit}"
+    keyo= "5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
+    url = "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={min}&maxLength={max}&limit={limit}"
     mino = 3
     maxo = 20
-    limito = 2
-    lengtho = min
+    limito = 1
+    lengtho = mino
     wordlist = []
-    while length <= max:
-        fullurl=url.format(key=keyo, min=mino, max=maxo, limit=limito)
+    
+    # while lengtho <= maxo:
+    for i in range(3,20,2)
+        fullurl=url.format(key=keyo, min=i, max=i, limit=limito)
         pull = requests.get(fullurl)
-        for i in range(min,max, limit):
-            if r.status_code is 200:
-                if i < max:
-                    wordlist.append(pull)
+
+        if pull.status_code is 200:
+            templist =[]
+            # templist2 =[]
+            randword = json.loads(pull.text)
+            
+            if randword[0]["word"] is None:
+                pass
             else:
-                for o in range(max,min, -limit):
-                    wordlist.append(pull)
+                templist.append(randword[0]["word"])
+                # templist2.append(randword[0]["word"])
+                # lengtho += 2
+        # wordlist.append(templist)
+    for i in range(18,3,-2)
+        fullurl=url.format(key=keyo, min=i, max=i, limit=limito)
+        pull = requests.get(fullurl)
+
+        if pull.status_code is 200:
+            templist2 =[]
+            randword = json.loads(pull.text)
+            if randword[0]["word"] is None:
+                pass
+            else:
+                templist2.append(randword[0]["word"])
+        # wordlist.append(templist2)
+    for i in range(len(templist)):
+        wordlist.append(templist[i])
+    # templist2.reverse()
+    for i in range(1,len(templist2)):
+        wordlist.append(templist2[i])
     return(wordlist)
 
         
