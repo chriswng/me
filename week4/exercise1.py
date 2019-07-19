@@ -79,41 +79,45 @@ def wordy_pyramid():
     """
 
     keyo= "5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
-    url = "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}&minLength={min}&maxLength={max}&limit={limit}"
+    url = (
+        "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}"
+        "&minLength={min}"
+        "&maxLength={max}"
+        "&limit=1"
+    )
     mino = 3
     maxo = 20
-    limito = 1
     lengtho = mino
     wordlist = []
     
-    # while lengtho <= maxo:
-    for i in range(3,20,2)
-        fullurl=url.format(key=keyo, min=i, max=i, limit=limito)
+    while lengtho <= maxo:
+    # for i in range(3,20,2):
+        fullurl=url.format(key=keyo, min=lengtho, max=lengtho)
         pull = requests.get(fullurl)
 
         if pull.status_code is 200:
             templist =[]
-            # templist2 =[]
+            templist2 =[]
             randword = json.loads(pull.text)
             
             if randword[0]["word"] is None:
                 pass
             else:
                 templist.append(randword[0]["word"])
-                # templist2.append(randword[0]["word"])
-                # lengtho += 2
-        # wordlist.append(templist)
-    for i in range(18,3,-2)
-        fullurl=url.format(key=keyo, min=i, max=i, limit=limito)
-        pull = requests.get(fullurl)
-
-        if pull.status_code is 200:
-            templist2 =[]
-            randword = json.loads(pull.text)
-            if randword[0]["word"] is None:
-                pass
-            else:
                 templist2.append(randword[0]["word"])
+                lengtho += 2
+        # wordlist.append(templist)
+    # for i in range(18,3,-2):
+    #     fullurl=url.format(key=keyo, min=i, max=i, limit=limito)
+    #     pull = requests.get(fullurl)
+
+    #     if pull.status_code is 200:
+    #         templist2 =[]
+    #         randword = json.loads(pull.text)
+    #         if randword[0]["word"] is None:
+    #             pass
+    #         else:
+    #             templist2.append(randword[0]["word"])
         # wordlist.append(templist2)
     for i in range(len(templist)):
         wordlist.append(templist[i])
