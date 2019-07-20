@@ -157,54 +157,76 @@ def wordy_pyramid(api_key):
 
     baseURL = (
         "http://api.wordnik.com/v4/words.json/randomWords?"
-        "api_key={api_key}"
+        "api_key=5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
         "&minLength={length}"
         "&maxLength={length}"
         "&limit=1"
     )
     pyramid_list = []
-    for i in range(3, 21, 2):
-        url = baseURL.format(api_key="5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
-    for i in range(20, 3, -2):
-        url = baseURL.format(api_key="", length=i)
-        r = requests.get(url)
-        if r.status_code is 200:
-            message = r.json()[0]["word"]
-            pyramid_list.append(message)
-        else:
-            print("failed a request", r.status_code, i)
+    def loopyloop(x,y,z):
+        for i in range(x, y, z):
+            url = baseURL.format(length=i)
+            r = requests.get(url)
+            if r.status_code is 200:
+                message = r.json()[0]["word"]
+                pyramid_list.append(message)
+            else:
+                print("failed a request", r.status_code, i)
+    loopyloop(3,21,2)
+    loopyloop(20,3,-2)    
+    # for i in range(20, 3, -2):
+    #     url = baseURL.format(length=i)
+    #     r = requests.get(url)
+    #     if r.status_code is 200:
+    #         message = r.json()[0]["word"]
+    #         pyramid_list.append(message)
+    #     else:
+    #         print("failed a request", r.status_code, i)
     return pyramid_list
 
 
 def get_a_word_of_length_n(length):
-    # import requests
+    import requests
 
-    # baseURL = (
-    #     "http://api.wordnik.com/v4/words.json/randomWords?"
-    #     "api_key={api_key}"
-    #     "&minLength={length}"
-    #     "&maxLength={length}"
-    #     "&limit=1"
-    # )
-    # url = baseURL.format(api_key="5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868", length=length)
-    # r = requests.get(url)
-    # nlist =[]
-    # if r.status_code is 200:
-    #     message = r.json()[0]["word"]
-    #     nlist.append(message)
-    # return(nlist)
-    pass
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key=5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+    url = baseURL.format(length=length)
+    r = requests.get(url)
+    nlist =[]
+    if r.status_code is 200:
+        message = r.json()[0]["word"]
+        nlist.append(message)
+    return(nlist)
+    
 
 def list_of_words_with_lengths(list_of_lengths):
-    pass
+    import requests
+
+    baseURL = (
+        "http://api.wordnik.com/v4/words.json/randomWords?"
+        "api_key=5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
+        "&minLength={length}"
+        "&maxLength={length}"
+        "&limit=1"
+    )
+    n2list =[]
+    for i in range(len(list_of_lengths)):
+        length=list_of_lengths[i]
+
+        url = baseURL.format(length=length)
+        r = requests.get(url)
+        
+        if r.status_code is 200:
+            message = r.json()[0]["word"]
+            n2list.append(message)
+    return(n2list)
 
 
 if __name__ == "__main__":
-    do_bunch_of_bad_things()
-    wordy_pyramid("a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5")
+    # do_bunch_of_bad_things()
+    wordy_pyramid("5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868")

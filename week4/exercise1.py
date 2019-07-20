@@ -89,39 +89,22 @@ def wordy_pyramid():
     maxo = 20
     lengtho = mino
     wordlist = []
-    
+    templist =[]
+    templist2 =[]
     while lengtho <= maxo:
-    # for i in range(3,20,2):
         fullurl=url.format(key=keyo, min=lengtho, max=lengtho)
-        pull = requests.get(fullurl)
-
-        if pull.status_code is 200:
-            templist =[]
-            templist2 =[]
-            randword = json.loads(pull.text)
-            
+        pull = requests.get(fullurl)   
+        if pull.status_code is 200:         
+            randword = json.loads(pull.text)            
             if randword[0]["word"] is None:
                 pass
             else:
                 templist.append(randword[0]["word"])
                 templist2.append(randword[0]["word"])
-                lengtho += 2
-        # wordlist.append(templist)
-    # for i in range(18,3,-2):
-    #     fullurl=url.format(key=keyo, min=i, max=i, limit=limito)
-    #     pull = requests.get(fullurl)
-
-    #     if pull.status_code is 200:
-    #         templist2 =[]
-    #         randword = json.loads(pull.text)
-    #         if randword[0]["word"] is None:
-    #             pass
-    #         else:
-    #             templist2.append(randword[0]["word"])
-        # wordlist.append(templist2)
+                lengtho += 2    
     for i in range(len(templist)):
         wordlist.append(templist[i])
-    # templist2.reverse()
+    templist2.reverse()
     for i in range(1,len(templist2)):
         wordlist.append(templist2[i])
     return(wordlist)
