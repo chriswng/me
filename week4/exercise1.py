@@ -78,24 +78,14 @@ def wordy_pyramid():
     TIP: to add an argument to a URL, use: ?argName=argVal e.g. &minLength=
     """
 
-    # keyo= "5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
-    # KEY2 = "u1z3l5tf0f9ju56t2ayzghgs2sxb107rwpk5qqbnrxhob4yk3"
-    # KEY3 = "ok9yx8q8odbphxvilslykgn31fg168wpzqlqqlzoy4i3b5mum"
-    # url = (
-    #     "http://api.wordnik.com/v4/words.json/randomWords?api_key={key}"
-    #     "&minLength={min}"
-    #     "&maxLength={max}"
-    #     "&limit=1"
-    # )
     url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={len}"
     mino = 3
     maxo = 20
-    lengtho = mino
     wordlist = []
     templist =[]
     templist2 =[]
-    while lengtho <= maxo:
-        fullurl=url.format(len=lengtho)
+    for i in range(mino,maxo):
+        fullurl=url.format(len=i)
         pull = requests.get(fullurl)   
         if pull.status_code is 200:         
             randword = pull.content         
@@ -103,39 +93,20 @@ def wordy_pyramid():
                 pass
             else:
                 randword = str(randword)
-                if int(lengtho) % 2 ==0:
+                # below checks if the word will have odd or even 
+                # no. of characters. Then it sorts them into 
+                # separate lists
+                if int(i) % 2 ==0:
                     templist2.append(randword[2:len(randword)-1])
-                    lengtho += 1
                 else:
                     templist.append(randword[2:len(randword)-1])
-                    lengtho += 1    
     for i in range(len(templist)):
         wordlist.append(str(templist[i]))
+    # reverses the second list so that largest word will append first
     templist2.reverse()
     for i in range(len(templist2)):
         wordlist.append(str(templist2[i]))
-    return('\n'.join(wordlist))
-    # baseURL = (
-    #     "http://api.wordnik.com/v4/words.json/randomWords?"
-    #     "api_key=5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
-    #     "&minLength={length}"
-    #     "&maxLength={length}"
-    #     "&limit=1"
-    # )
-    # pyramid_list = []
-    # def loopyloop(x,y,z):
-    #     for i in range(x, y, z):
-    #         url = baseURL.format(length=i)
-    #         r = requests.get(url)
-    #         if r.status_code is 200:
-    #             message = r.json()[0]["word"]
-    #             pyramid_list.append(message)
-    #         else:
-    #             print("failed a request", r.status_code, i)
-    # loopyloop(1,21,2)
-    # loopyloop(20,1,-2)    
-    
-    # return(pyramid_list)
+    return wordlist
         
         
 
