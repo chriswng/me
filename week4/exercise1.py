@@ -84,7 +84,7 @@ def wordy_pyramid():
     wordlist = []
     templist =[]
     templist2 =[]
-    for i in range(mino,maxo):
+    for i in range(mino,maxo+1):
         fullurl=url.format(len=i)
         pull = requests.get(fullurl)   
         if pull.status_code is 200:         
@@ -105,12 +105,9 @@ def wordy_pyramid():
                     #  and below so to ignore the b' and '
                 else:
                     templist.append(randword[2:len(randword)-1])
-    for i in range(len(templist)):
-        wordlist.append(str(templist[i]))
-    # reverses the second list so that largest word will append first
     templist2.reverse()
-    for i in range(len(templist2)):
-        wordlist.append(str(templist2[i]))
+    wordlist.extend(templist)
+    wordlist.extend(templist2)
     return wordlist
         
         
