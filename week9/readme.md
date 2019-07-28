@@ -1,1 +1,2 @@
 TODO: Reflect on what you learned this week and what is still unclear.
+This week is the final week for these weekly assignments. The last few are very tricky to crack right now, but easier thanks to the new website inplace of wordnik.
