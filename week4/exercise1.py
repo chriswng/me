@@ -88,7 +88,8 @@ def wordy_pyramid():
         fullurl=url.format(len=i)
         pull = requests.get(fullurl)   
         if pull.status_code is 200:         
-            randword = pull.content         
+            randword = pull.content  
+                #    this retrives the word from the url
             if randword is None: 
                 pass
             else:
@@ -98,6 +99,10 @@ def wordy_pyramid():
                 # separate lists
                 if int(i) % 2 ==0:
                     templist2.append(randword[2:len(randword)-1])
+                    #  issue with words from this url is that
+                    #  they look like --> b'word' 
+                    #  so i've applied the range filter as seen above
+                    #  and below so to ignore the b' and '
                 else:
                     templist.append(randword[2:len(randword)-1])
     for i in range(len(templist)):
