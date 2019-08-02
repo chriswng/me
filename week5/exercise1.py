@@ -151,16 +151,12 @@ def triangle_master(base, height, return_diagram=False, return_dictionary=False)
     else:
         print("You're an odd one, you don't want anything!")
 
-
-def wordy_pyramid(api_key):
+def getwords(start,stop,step):
     import requests
     url = "https://us-central1-waldenpondpress.cloudfunctions.net/give_me_a_word?wordlength={len}"
-    mino = 3
-    maxo = 20
-    wordlist = []
-    templist =[]
-    templist2 =[]
-    for i in range(mino,maxo+1):
+
+    wordy = []
+    for i in range(start,stop,step):
         fullurl=url.format(len=i)
         pull = requests.get(fullurl)   
         if pull.status_code is 200:         
@@ -173,46 +169,21 @@ def wordy_pyramid(api_key):
                 # below checks if the word will have odd or even 
                 # no. of characters. Then it sorts them into 
                 # separate lists
-                if int(i) % 2 ==0:
-                    templist2.append(randword[2:len(randword)-1])
+                
+                wordy.append(randword[2:-1])
                     #  issue with words from this url is that
                     #  they look like --> b'word' 
                     #  so i've applied the range filter as seen above
                     #  and below so to ignore the b' and '
-                else:
-                    templist.append(randword[2:len(randword)-1])
-    templist2.reverse()
-    wordlist.extend(templist)
-    wordlist.extend(templist2)
+    return wordy
+
+
+
+def wordy_pyramid():
+    wordlist =[]
+    lengths=[3, 5, 7, 9, 11, 13, 15, 17, 19, 20, 18, 16, 14, 12, 10, 8, 6, 4]
+    wordlist.extend(list_of_words_with_lengths(lengths))
     return wordlist
-    # baseURL = (
-    #     "http://api.wordnik.com/v4/words.json/randomWords?"
-    #     "api_key=5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868"
-    #     "&minLength={length}"
-    #     "&maxLength={length}"
-    #     "&limit=1"
-    # )
-    # pyramid_list = []
-    # def loopyloop(x,y,z):
-    #     for i in range(x, y, z):
-    #         url = baseURL.format(length=i)
-    #         r = requests.get(url)
-    #         if r.status_code is 200:
-    #             message = r.json()[0]["word"]
-    #             pyramid_list.append(message)
-    #         else:
-    #             print("failed a request", r.status_code, i)
-    # loopyloop(3,21,2)
-    # loopyloop(20,3,-2)    
-    # for i in range(20, 3, -2):
-    #     url = baseURL.format(length=i)
-    #     r = requests.get(url)
-    #     if r.status_code is 200:
-    #         message = r.json()[0]["word"]
-    #         pyramid_list.append(message)
-    #     else:
-    #         print("failed a request", r.status_code, i)
-    # return(pyramid_list)
 
 def not_number_rejector(length):
     """Ask for a number repeatedly until actually given one.
@@ -223,13 +194,14 @@ def not_number_rejector(length):
     """
     given = False
 
-    if not given:
+    while not given:
         NUMBER = str(length)
         if NUMBER.isdigit():
             given = True
             return int(NUMBER)
         else: 
             pass
+    return NUMBER
 
 def get_a_word_of_length_n(length):
     import requests
@@ -258,7 +230,7 @@ def list_of_words_with_lengths(list_of_lengths):
         if pull.status_code is 200:         
             wordn = pull.content  
             wordn = str(wordn)
-            outputword = wordn[2:len(wordn)-1]
+            outputword = wordn[2:-1]
                 #    this retrives the word from the url
         listwerds.append(outputword) 
     return listwerds
@@ -286,5 +258,5 @@ def list_of_words_with_lengths(list_of_lengths):
 
 
 # if __name__ == "__main__":
-    # do_bunch_of_bad_things()
-    # wordy_pyramid("5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868")
+#     do_bunch_of_bad_things()
+#     wordy_pyramid("5586ih53eyafp9iaztwo57zpldgdwwftvv493ppcx0qhno868")
